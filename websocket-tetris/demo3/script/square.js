@@ -18,6 +18,24 @@ Square.prototype.canDown = function (isValid) {
     test.y = this.origin.y;
     return isValid(test, this.data);
 }
+Square.prototype.canLeft = function (isValid) {
+    var test = {};
+    test.x = this.origin.x;
+    test.y = this.origin.y - 1;
+    return isValid(test, this.data);
+}
+Square.prototype.canRight = function (isValid) {
+    var test = {};
+    test.x = this.origin.x;
+    test.y = this.origin.y + 1;
+    return isValid(test, this.data);
+}
 Square.prototype.down = function () {
     this.origin.x = this.origin.x + 1;
+}
+Square.prototype.left = function () {
+    this.origin.y = this.origin.y - 1;
+}
+Square.prototype.right = function () {
+    this.origin.y = this.origin.y + 1;
 }

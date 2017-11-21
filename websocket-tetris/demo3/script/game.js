@@ -91,6 +91,24 @@ var Game = function () {
             refreshDiv(gameData, gameDivs);
         }
     }
+    // 左移
+    var left = function () {
+        if(cur.canLeft(isValid)) {
+            clearData();
+            cur.origin.y = cur.origin.y - 1;
+            setData();
+            refreshDiv(gameData, gameDivs);
+        }
+    }
+    // 右移
+    var right = function () {
+        if(cur.canRight(isValid)) {
+            clearData();
+            cur.origin.y = cur.origin.y + 1;
+            setData();
+            refreshDiv(gameData, gameDivs);
+        }
+    }
     // 初始化Div
     var initDiv = function (container, data, divs) {
         for(var i = 0; i < data.length; i++) {
@@ -137,4 +155,6 @@ var Game = function () {
     //导出API
     this.init = init;
     this.down = down;
+    this.left = left;
+    this.right = right;
 }
