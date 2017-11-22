@@ -5,7 +5,7 @@ var Local = function () {
     var bindKeyEvent = function () {
         document.onkeydown = function (e) {
             if(e.keyCode == 38) {   // up
-
+                game.rotate();
             } else if (e.keyCode == 39) { // right
                 game.right();
             } else if (e.keyCode == 40) { // down
@@ -13,7 +13,7 @@ var Local = function () {
             } else if (e.keyCode == 37) { // left
                 game.left();
             } else if (e.keyCode == 32) { // space
-                
+                game.fall();
             }
         }
     }

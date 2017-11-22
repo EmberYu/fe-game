@@ -89,6 +89,9 @@ var Game = function () {
             cur.origin.x = cur.origin.x + 1;
             setData();
             refreshDiv(gameData, gameDivs);
+            return true;
+        } else {
+            return false;
         }
     }
     // 左移
@@ -105,6 +108,15 @@ var Game = function () {
         if(cur.canRight(isValid)) {
             clearData();
             cur.origin.y = cur.origin.y + 1;
+            setData();
+            refreshDiv(gameData, gameDivs);
+        }
+    }
+    // 旋转
+    var rotate = function () {
+        if(cur.canRotate(isValid)) {
+            clearData();
+            cur.rotate();
             setData();
             refreshDiv(gameData, gameDivs);
         }
@@ -142,12 +154,10 @@ var Game = function () {
     var init = function (doms) {
         gameDiv = doms.gameDiv;
         nextDiv = doms.nextDiv;
-        cur = new Square();
-        next = new Square();
+        cur = SquareFactory.prototype.make(2, 2);
+        next = SquareFactory.prototype.make(3, 3);
         initDiv(gameDiv, gameData, gameDivs);
         initDiv(nextDiv, next.data, nextDivs);
-        cur.origin.x = 10;
-        cur.origin.y = 5;
         setData();
         refreshDiv(gameData, gameDivs);
         refreshDiv(next.data, nextDivs);
@@ -157,4 +167,8 @@ var Game = function () {
     this.down = down;
     this.left = left;
     this.right = right;
+    this.rotate = rotate;
+    this.fall = function () {
+        while(down());
+    }
 }
